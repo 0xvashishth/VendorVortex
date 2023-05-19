@@ -1,0 +1,26 @@
+{
+  "name": "vendorvortex-server",
+  "version": "1.0.0",
+  "description": "This is VendorVortex server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasu-1/VendorVortex.git"
+  },
+  "author": "Vashishth Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vasu-1/VendorVortex/issues"
+  },
+  "homepage": "https://github.com/vasu-1/VendorVortex#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.0",
+    "serverless-http": "^3.2.0"
+  }
+}
