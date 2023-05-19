@@ -75,36 +75,4 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-router.put("/update", async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
-  console.log("for signin..!");
-  try {
-    var emailExist = await User.findOne({ email: email });
-    if (emailExist) {
-      const isMatch = await bcrypt.compare(password, emailExist.password);
-
-      const token = await emailExist.generateAuthToken();
-
-      if (isMatch) {
-        delete emailExist.tokens;
-        return res.status(200).json({
-          message: "You are logged in!",
-          jwttokenloginuser: token,
-          user: await convertUserObjToRes(emailExist),
-        });
-      } else {
-        return res.status(401).json({ message: "Passwrd is incorrect!" });
-      }
-    } else {
-      return res.status(401).json({ message: "You are not registered!" });
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Server Error", error: err });
-  }
-});
-
 module.exports = router;

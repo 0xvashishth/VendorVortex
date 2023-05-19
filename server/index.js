@@ -21,6 +21,7 @@ app.use(express.json());
 
 // link the router
 app.use("/api/auth", require('./router/auth'));
+app.use("/api/user", require('./router/user'));
 
 app.get("/", (req, res) => {
   res.send("Hello VendorVortex!");
