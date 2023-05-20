@@ -12,7 +12,7 @@ const Authenticate = async (req, res, next) => {
     var rootUser = await User.findOne({ _id: verifytoken._id, "tokens.token": token });
 
     if (!rootUser) {
-        return res.status(401).json({ message: "User not found!" });
+        return res.status(404).json({ message: "User not found!" });
     }
     req.token = token;
     req.rootUser = rootUser;

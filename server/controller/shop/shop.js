@@ -5,12 +5,40 @@ const Shop = require("../../database/shopSchema");
 let mongoose = require("mongoose");
 
 const createShop = async (req, res) => {
-  const {name, description, fullAddress, city, state, country, pincode, images} = req.body;
-  if(!name || !description || !req.userId || !fullAddress || !city || !state || !country || !pincode ){
+  const {
+    name,
+    description,
+    fullAddress,
+    city,
+    state,
+    country,
+    pincode,
+    images,
+  } = req.body;
+  if (
+    !name ||
+    !description ||
+    !req.userId ||
+    !fullAddress ||
+    !city ||
+    !state ||
+    !country ||
+    !pincode
+  ) {
     return res.status(400).json({ message: "All fields are erquired!" });
   }
   try {
-    var shop = new Shop({name, description, owner:req.userId, fullAddress, city, state, country, pincode, images});
+    var shop = new Shop({
+      name,
+      description,
+      owner: req.userId,
+      fullAddress,
+      city,
+      state,
+      country,
+      pincode,
+      images,
+    });
     var shopCreate = await shop.save();
     if (shopCreate) {
       //   mailsender.sendmailer(
@@ -18,15 +46,15 @@ const createShop = async (req, res) => {
       //     name
       //   );
       return res.status(201).json({
-        message: "shop created successfully",
-        shop: shopCreate
+        message: "Shop created successfully",
+        shop: shopCreate,
       });
     }
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Server Error!", error });
   }
-}
+};
 
 const updateShop = async (req, res) => {
   const { shopId, name, description } = req.body;
@@ -163,9 +191,40 @@ const getShopById = async (req, res) => {
   }
 };
 
+const updateRatings = async (req, res) => {
+  const { rating, comment, shopId } = req.body;
+  if (rating > 5 || rating < 1) {
+    return res
+      .status(400)
+      .json({ message: "Rating can not be more than 5 or less than 1!" });
+  }
+  try {
+    Shop.findById(shopId)
+      .then((shop) => {
+        if (!shop) {
+          return res.status(404).json({ message: "Shop not found" });
+        }
+
+        shop.addRating(req.userId, rating, comment);
+
+        return shop.save();
+      })
+      .then((updatedShop) => {
+        return res.status(200).json({ shop: updatedShop, message: "Ratings added successfully!" });
+      })
+      .catch((error) => {
+        console.error("Error adding shop rating:", error);
+        return res.status(401).json({ message: "Failed to add ratings!", error });
+      });
+  } catch (error) {
+    return res.status(500).json({ message: "Server Error!", error });
+  }
+};
+
 module.exports = {
   createShop,
   updateShop,
   deleteShop,
   getShopById,
+  updateRatings
 };

@@ -99,9 +99,108 @@ const getCommunityById = async (req, res) => {
   }
 };
 
+const enrollInCommunity = async (req, res) => {
+  const { communityId } = req.body;
+  try {
+    Community.findOne(
+      { _id: communityId, "members.user": req.userId },
+      { "members.$": 1 }
+    )
+      .then((existingMember) => {
+        if (existingMember) {
+          console.log("Member is already exising in the community");
+          return res
+            .status(400)
+            .json({ message: "Member is already added in the community!" });
+        }
+
+        // Add the member to the members array with stage set to 0
+        Community.findByIdAndUpdate(
+          communityId,
+          {
+            $push: {
+              members: {
+                user: req.userId,
+                stage: 0,
+              },
+            },
+          },
+          { new: true }
+        )
+          .then((updatedCommunity) => {
+            return res.status(200).json({
+              message: "Member added successfully!",
+              community: updatedCommunity,
+            });
+          })
+          .catch((error) => {
+            console.error("Error adding member:", error);
+          });
+      })
+      .catch((error) => {
+        return res
+          .status(401)
+          .json({ message: "Failed to add member!", error });
+      });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server Error!", error });
+  }
+};
+
+const unenrollInCommunity = async (req, res) => {
+  const { communityId } = req.body;
+  try {
+    Community.findOne(
+      { _id: communityId, "members.user": req.userId },
+      { "members.$": 1 }
+    )
+      .then((existingMember) => {
+        if (!existingMember) {
+          console.log("Member is not exising in the community");
+          return res
+            .status(400)
+            .json({ message: "Member is already not in the community!" });
+        }
+
+        // Add the member to the members array with stage set to 0
+        Community.findByIdAndUpdate(
+          communityId,
+          {
+            $pull: {
+              members: {
+                user: req.userId,
+              },
+            },
+          },
+          { new: true }
+        )
+          .then((updatedCommunity) => {
+            return res.status(200).json({
+              message: "Member removed successfully!",
+              community: updatedCommunity,
+            });
+          })
+          .catch((error) => {
+            console.error("Error removing member:", error);
+          });
+      })
+      .catch((error) => {
+        return res
+          .status(401)
+          .json({ message: "Failed to remove member!", error });
+      });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server Error!", error });
+  }
+};
+
 module.exports = {
   createCommunity,
   updateCommunity,
   deleteCommunity,
   getCommunityById,
+  enrollInCommunity,
+  unenrollInCommunity
 };

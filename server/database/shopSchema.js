@@ -75,6 +75,18 @@ shopSchema.pre("save", async function (next) {
   next();
 });
 
+shopSchema.methods.addRating = function (userId, rating, comment) {
+  const existingRating = this.ratings.find(
+    (r) => r.user.toString() === userId.toString()
+  );
+
+  if (existingRating) {
+    throw new Error('User has already rated this shop.');
+  }
+
+  this.ratings.push({ user: userId, rating, comment });
+};
+
 const Shop = mongoose.model("Shop", shopSchema);
 
 module.exports = Shop;
