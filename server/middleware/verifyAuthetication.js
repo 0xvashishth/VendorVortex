@@ -1,6 +1,7 @@
 const Plan = require("../database/planSchema");
 const Shop = require("../database/shopSchema");
 const User = require("../database/userSchema");
+const Community = require("../database/communitySchema");
 let mongoose = require("mongoose");
 
 const veifyShopAuthenticUser = async (req, res, next) => {
@@ -49,8 +50,32 @@ const veifyPlanAuthenticUser = async (req, res, next) => {
   }
 };
 
+const veifyCommunityAuthenticUser = async (req, res, next) => {
+  try {
+    const { communityId } = req.body;
+
+    var communityObj = await Community.findOne({
+      _id: mongoose.Types.ObjectId(communityId),
+      owner: req.userId,
+    });
+
+    if (!communityObj) {
+      return res
+        .status(401)
+        .json({
+          message: "Community not found or You are not authorized for this action!",
+        });
+    }
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server Error", error: err });
+  }
+};
+
 
 module.exports = {
     veifyPlanAuthenticUser,
-    veifyShopAuthenticUser
+    veifyShopAuthenticUser,
+    veifyCommunityAuthenticUser
 }
