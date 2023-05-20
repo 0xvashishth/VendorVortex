@@ -7,24 +7,27 @@ const Login = () => {
         const name = e.target.name;
         const value = e.target.value;
         setuser({ ...user, [name]: value });
-        console.log("user : ", user);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { name, email } = user;
-        const res = await fetch("/Login", {
+        const { email, password } = user;
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}api/auth/signin`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name, email
+                email, password
             })
         });
         const data = await res.json();
+        console.log("Token : ", data.jwttokenloginuser);
         alert(data.message);
-        console.log(data);
+        if (res.status == 201) {
+            localStorage.setItem('token', data.jwttokenloginuser);
+            window.location.href = "/";
+        }
     }
     return (
         <div className="container">
