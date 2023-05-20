@@ -15,7 +15,7 @@ const veifyShopAuthenticUser = async (req, res, next) => {
 
     if (!shopObj) {
       return res
-        .status(401)
+        .status(404)
         .json({
           message: "Shop not found or You are not authorized for this action!",
         });
@@ -38,7 +38,7 @@ const veifyPlanAuthenticUser = async (req, res, next) => {
 
     if (!planObj) {
       return res
-        .status(401)
+        .status(404)
         .json({
           message: "Plan not found or You are not authorized for this action!",
         });
@@ -61,7 +61,7 @@ const veifyCommunityAuthenticUser = async (req, res, next) => {
 
     if (!communityObj) {
       return res
-        .status(401)
+        .status(404)
         .json({
           message: "Community not found or You are not authorized for this action!",
         });
@@ -73,9 +73,27 @@ const veifyCommunityAuthenticUser = async (req, res, next) => {
   }
 };
 
+const verifyIsVendor = async (req, res) => {
+  try {
+    const { rootUser } = req.body;
+
+    if (!rootUser.isVendor) {
+      return res
+        .status(400)
+        .json({
+          message: "You are not vendor!",
+        });
+    }
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server Error", error: err });
+  }
+}
 
 module.exports = {
     veifyPlanAuthenticUser,
     veifyShopAuthenticUser,
-    veifyCommunityAuthenticUser
+    veifyCommunityAuthenticUser,
+    verifyIsVendor
 }
