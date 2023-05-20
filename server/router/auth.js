@@ -25,10 +25,6 @@ router.post("/signup", async (req, res) => {
     var userRegister = await user.save();
     const token = await userRegister.generateAuthToken();
     if (userRegister && token) {
-      //   mailsender.sendmailer(
-      //     email,
-      //     name
-      //   );
       return res.status(201).json({
         message: "User registered successfully",
         jwttokenloginuser: token,
