@@ -31,8 +31,12 @@ const Signup = () => {
         }
     }
     return (
-        <div className="container">
-            <form>
+        <div className="container row m-4">
+            <div className='col-md-5'>
+                <img className='rounded mx-auto d-block img-fluid' src="https://github.com/j-imy/test_repo/assets/89864614/aa9b7f29-9fe3-449c-8b4f-f595377079b6"></img>
+            </div>
+            <div className='col-md-7 mx-auto'>
+            <form className='m-3'>
                 <div className="mb-3">
                     <label htmlFor="exampleInputName" className="form-label">
                         Name
@@ -84,6 +88,7 @@ const Signup = () => {
                     Submit
                 </button>
             </form>
+            </div>
         </div>
 
     )
