@@ -4314,7 +4314,7 @@ fieldset:disabled .btn {
 
 .navbar {
     --bs-navbar-padding-x: 0;
-    --bs-navbar-padding-y: 1rem;
+    --bs-navbar-padding-y: 0.5rem;
     --bs-navbar-color: rgba(52, 58, 64, 0.8);
     --bs-navbar-hover-color: #343a40;
     --bs-navbar-disabled-color: rgba(52, 58, 64, 0.3);
@@ -9214,7 +9214,7 @@ fieldset:disabled .btn {
 
 .bg-dark {
     --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    background-color: rgba(var(--bs-dark-rgb), 0.8) !important;
 }
 
 .bg-black {
