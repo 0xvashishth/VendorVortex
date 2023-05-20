@@ -7,13 +7,13 @@ const Signup = () => {
         const name = e.target.name;
         const value = e.target.value;
         setuser({ ...user, [name]: value });
-        console.log("user : ", user);
+        // console.log("user : ", user);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { name, email, password, isVendor } = user;
-        const res = await fetch("/signup", {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}api/auth/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -24,7 +24,11 @@ const Signup = () => {
         });
         const data = await res.json();
         alert(data.message);
-        console.log(data);
+        console.log("Data from backend : ", data.jwttokenloginuser);
+        if (res.status == 201) {
+            localStorage.setItem('token', data.jwttokenloginuser);
+            window.location.href = "/";
+        }
     }
     return (
         <div className="container">
