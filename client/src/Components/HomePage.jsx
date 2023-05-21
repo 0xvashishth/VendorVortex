@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, NavLink as Link } from "react-router-dom";
-
+import isLoggedn from "../helper.js";
 
 const HomePage = () => {
   return (
@@ -12,9 +12,15 @@ const HomePage = () => {
             Empowering Local Vendors and Building a Thriving Community 👨🏻‍🤝‍👨🏻
           </h4>
           <div className="m-2  mt-3">
-            <Link className="btn btn-outline-info" to="/signup">
-              Get Started 🎉
-            </Link>
+            {!isLoggedn() ? (
+              <Link className="btn btn-outline-info" to="/signup">
+                Get Started 🎉
+              </Link>
+            ) : (
+              <Link className="btn btn-outline-secondary me-2" to="/profile">
+                Got To Your Profile
+              </Link>
+            )}
           </div>
         </div>
       </div>

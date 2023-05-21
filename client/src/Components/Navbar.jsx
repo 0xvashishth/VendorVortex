@@ -5,11 +5,12 @@ import Signup from "./Signup";
 import Profile from "./Profile";
 import Logout from "./Logout";
 import HomePage from "./HomePage";
+import isLoggedn from "../helper.js";
 
 const Navbar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg m-1 rounded navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-md m-1 rounded navbar-dark bg-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             🎉 VendorVortex
@@ -38,26 +39,47 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/profile">
-                  Profile
-                </Link>
+                {!isLoggedn() ? (
+                  <></>
+                ) : (
+                  <>
+                    <Link className="nav-link" to="/profile">
+                      Profile
+                    </Link>
+                  </>
+                )}
               </li>
             </ul>
-            {/* <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button class="btn btn-outline-success me-2" type="submit">Search</button>
-                        </form> */}
-            <Link className="btn btn-outline-primary me-2" to="/login">
-              Login
-            </Link>
-            <Link className="btn btn-outline-success me-2" to="/signup">
-              Signup
-            </Link>
+
+            {!isLoggedn() ? (
+              <>
+                <Link className="btn btn-outline-primary me-2" to="/login">
+                  Login
+                </Link>
+                <Link className="btn btn-outline-success me-2" to="/signup">
+                  Signup
+                </Link>
+              </>
+            ) : (
+              <>
+                <form class="d-flex" role="search">
+                  <input
+                    class="form-control me-2"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
+                </form>
+                <Link className="btn btn-outline-info me-2" to="/logout">
+                  Logout
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
       <Routes>
-        <Route exact path="/" element={<HomePage/>}></Route>
+        <Route exact path="/" element={<HomePage />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/signup" element={<Signup />}></Route>
         <Route exact path="/profile" element={<Profile />}></Route>
