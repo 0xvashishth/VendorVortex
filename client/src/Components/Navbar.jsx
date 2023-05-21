@@ -6,6 +6,7 @@ import Profile from "./Profile";
 import Logout from "./Logout";
 import HomePage from "./HomePage";
 import isLoggedn from "../helper.js";
+import Shop from "./Shop";
 
 const Navbar = () => {
   return (
@@ -84,6 +85,7 @@ const Navbar = () => {
         <Route exact path="/signup" element={<Signup />}></Route>
         <Route exact path="/profile" element={<Profile />}></Route>
         <Route exact path="/logout" element={<Logout />}></Route>
+        <Route exact path="/shop/:id" element={<Shop />}></Route>
       </Routes>
     </>
   );
