@@ -6,6 +6,7 @@ let mongoose = require("mongoose");
 
 const createCommunity = async (req, res) => {
   const { name, description, shopId } = req.body;
+  console.log("in create community : ", name, description, shopId);
   if (!name || !description || !req.userId || !shopId) {
     return res.status(400).json({ message: "All fields are erquired!" });
   }
