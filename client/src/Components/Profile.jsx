@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Community from './Community';
+import Community from './PeofileElement/Community';
 import Shop from "./Elements/Shops"
 
 const Profile = () => {
@@ -58,7 +58,6 @@ const Profile = () => {
         const data = await res.json();
         console.log("Data from community", data);
         getUserData();
-        // update the community in the state user.communities
     }
 
     const handleShopSubmit = async () => {
