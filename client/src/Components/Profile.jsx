@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Community from './Community';
 
 const Profile = () => {
-    const [userData, setUserData] = useState({}); // userData = {}
+    const [userData, setUserData] = useState({});
     const [community, setCommunity] = useState({});
     const [shop, setShop] = useState({});
     const [plan, setPlan] = useState({})
@@ -55,6 +56,8 @@ const Profile = () => {
         });
         const data = await res.json();
         console.log("Data from community", data);
+        getUserData();
+        // update the community in the state user.communities
     }
 
     const handleShopSubmit = async () => {
@@ -255,20 +258,23 @@ const Profile = () => {
                 </div>
             </div>
             {
-                userData &&
-                <div className="mt-2 container emp-profile">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <h2>{userData.name}</h2>
-                            <p>{userData.email}</p>
-                        </div>
-                        <div className="col-md-6">
-                            <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#createCommunityModal">Create Community</button>
-                            <button type="button" className="btn btn-info mx-2" data-bs-toggle="modal" data-bs-target="#createShopModal">Create Shop</button>
-                            <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#createPlanModal">Create Plan</button>
+                userData.name &&
+                <>
+                    <div className="mt-2 container emp-profile">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <h2>{userData.name}</h2>
+                                <p>{userData.email}</p>
+                            </div>
+                            <div className="col-md-6">
+                                <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#createCommunityModal">Create Community</button>
+                                <button type="button" className="btn btn-info mx-2" data-bs-toggle="modal" data-bs-target="#createShopModal">Create Shop</button>
+                                <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#createPlanModal">Create Plan</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <Community communities={userData.communities} getUserData={getUserData} />
+                </>
             }
         </>
     );
