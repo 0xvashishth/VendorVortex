@@ -163,7 +163,7 @@ const getShopById = async (req, res) => {
           communities: {
             name: 1,
             description: 1,
-            _id:1,
+            _id: 1,
           },
           ownerDetails: {
             name: 1,
@@ -223,10 +223,24 @@ const updateRatings = async (req, res) => {
   }
 };
 
+const getAllShops = async (req, res) => {
+  console.log("here");
+  try {
+    const shops = await Shop.find();
+    console.log(shops);
+    res.status(200).json({ message: "Shops retrieved successfully", shops });
+  }
+  catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error!", error });
+  }
+}
+
 module.exports = {
   createShop,
   updateShop,
   deleteShop,
   getShopById,
+  getAllShops,
   updateRatings
 };

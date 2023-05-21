@@ -197,11 +197,25 @@ const unenrollInCommunity = async (req, res) => {
   }
 };
 
+const getAllCommunities = async (req, res) => {
+  try {
+    const communities = await Community.find();
+    console.log(communities);
+    res.status(200).json({ message: "Communities retrieved successfully", communities });
+  }
+  catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error!", error });
+  }
+
+}
+
 module.exports = {
   createCommunity,
   updateCommunity,
   deleteCommunity,
   getCommunityById,
   enrollInCommunity,
-  unenrollInCommunity
+  unenrollInCommunity,
+  getAllCommunities
 };

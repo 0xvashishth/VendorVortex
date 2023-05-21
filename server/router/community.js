@@ -13,6 +13,7 @@ router.put("/", Authenticate, veifyCommunityAuthenticUser, community.updateCommu
 router.put("/enroll", Authenticate, community.enrollInCommunity); // any user can enroll the community
 router.put("/unenroll", Authenticate, community.unenrollInCommunity); // any user can unenroll the community
 router.delete("/", Authenticate, veifyCommunityAuthenticUser, community.deleteCommunity); // only the owner can delete the community and this will delete all other relative information about the shop from all schemas
+router.get("/allcommunities", community.getAllCommunities); // anyone can access the community details by it's id
 router.get("/:id", community.getCommunityById); // anyone can access the community details by it's id
 
 module.exports = router;
