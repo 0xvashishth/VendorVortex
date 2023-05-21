@@ -4,6 +4,8 @@
 
 The project is designed to help local vendors grow their small businesses by providing them a platform to showcase their shops. Customers can easily discover these shops, connect with their local community, explore current discount plans, and even share their experiences on social media.
 
+## Deployed Server: https://vendorvortex.onrender.com/
+
 ## Tech Stack
 
 ![Node.js](https://img.shields.io/badge/Node.js-18.16.0-<COLOR>?style=flat-square&logo=node.js&logoColor=white)
