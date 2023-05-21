@@ -80,6 +80,7 @@ const getUserById = async (req, res) => {
         $project: {
           name: 1,
           email: 1,
+          isVendor: 1,
           communities: {
             name: 1,
             description: 1,

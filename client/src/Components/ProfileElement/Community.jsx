@@ -27,7 +27,7 @@ const Community = ({ communities, getUserData }) => {
                         <th><h3>Name</h3></th>
                         <th><h3>Members Count</h3></th>
                         <th><h3>Description</h3></th>
-                        <th><h3>View</h3></th>
+                        {/* <th><h3>View</h3></th> */}
                         <th><h3>Delete</h3></th>
                     </tr>
                 </thead>
@@ -39,8 +39,8 @@ const Community = ({ communities, getUserData }) => {
                                     <td><a href={`/community/${community._id}`}>{community.name}</a></td>
                                     <td>{community.memberCount}</td>
                                     <td>{community.description}</td>
-                                    <td><Link type="button" className="btn btn-light" to={`/community/${community._id}`} >View</Link></td>
-                                    <td><button type="button" className="btn btn-dark" onClick={() => { handleDelete(community._id) }}>Delete</button></td>
+                                    {/* <td><Link type="button" className="btn btn-light" to={`/community/${community._id}`} >View</Link></td> */}
+                                    <td><button type="button" className="btn btn-outline-dark" onClick={() => { handleDelete(community._id) }}>Delete</button></td>
                                 </tr>
                             )
                         })

@@ -5,7 +5,7 @@ import Signup from "./Signup";
 import Profile from "./Profile";
 import Logout from "./Logout";
 import HomePage from "./HomePage";
-import isLoggedn from "../helper.js";
+import {isLoggedIn} from "../helper.js";
 import Shop from "./ShopDetails";
 import CommunityDetails from "./CommunityDetails";
 
@@ -41,11 +41,11 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                {!isLoggedn() ? (
+                {!isLoggedIn() ? (
                   <></>
                 ) : (
                   <>
-                    <Link className="nav-link" to="/profile">
+                    <Link className="nav-link" to={`/profile/${localStorage.getItem("_id")}`}>
                       Profile
                     </Link>
                   </>
@@ -53,7 +53,7 @@ const Navbar = () => {
               </li>
             </ul>
 
-            {!isLoggedn() ? (
+            {!isLoggedIn() ? (
               <>
                 <Link className="btn btn-outline-primary me-2" to="/login">
                   Login
@@ -84,7 +84,7 @@ const Navbar = () => {
         <Route exact path="/" element={<HomePage />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/signup" element={<Signup />}></Route>
-        <Route exact path="/profile" element={<Profile />}></Route>
+        <Route exact path="/profile/:id" element={<Profile />}></Route>
         <Route exact path="/logout" element={<Logout />}></Route>
         <Route exact path="/shop/:id" element={<Shop />}></Route>
         <Route exact path="/community/:id" element={<CommunityDetails />}></Route>

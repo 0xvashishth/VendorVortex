@@ -3,7 +3,7 @@ import Carousol from "./Elements/Carousol";
 import axios from "../axios";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import isLoggedin from "../helper.js";
+import {isLoggedIn} from "../helper.js";
 import { useParams } from "react-router-dom";
 import Community from "./Elements/Community"
 import Plan from "./Elements/Plans"
@@ -36,7 +36,7 @@ const Shop = () => {
 
   function postreview(e){
     e.preventDefault();
-    if(!isLoggedin()){
+    if(!isLoggedIn()){
       toast.error("Login First To Post Comment 🚀");
       return;
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, NavLink as Link } from "react-router-dom";
-import isLoggedn from "../helper.js";
+import {isLoggedIn} from "../helper.js";
 
 const HomePage = () => {
   return (
@@ -12,12 +12,12 @@ const HomePage = () => {
             Empowering Local Vendors and Building a Thriving Community 👨🏻‍🤝‍👨🏻
           </h4>
           <div className="m-2  mt-3">
-            {!isLoggedn() ? (
+            {!isLoggedIn() ? (
               <Link className="btn btn-outline-info" to="/signup">
                 Get Started 🎉
               </Link>
             ) : (
-              <Link className="btn btn-outline-secondary me-2" to="/profile">
+              <Link className="btn btn-outline-secondary me-2" to={`/profile/${localStorage.getItem("_id")}`}>
                 Got To Your Profile
               </Link>
             )}
@@ -53,7 +53,7 @@ const HomePage = () => {
               aria-label="Slide 3"
             ></button>
           </div>
-          <div class="carousel-inner">
+          {/* <div class="carousel-inner">
             <div class="carousel-item active">
               <img
                 src="https://github.com/j-imy/test_repo/assets/89864614/b48e9bb9-f6f7-4c8e-a41e-d7929d56d666"
@@ -75,7 +75,7 @@ const HomePage = () => {
                 alt="..."
               />
             </div>
-          </div>
+          </div> */}
           <button
             class="carousel-control-prev"
             type="button"

@@ -15,6 +15,7 @@ const createShop = async (req, res) => {
     pincode,
     images,
   } = req.body;
+  console.log(req.body);
   if (
     !name ||
     !description ||

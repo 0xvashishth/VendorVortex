@@ -1,6 +1,9 @@
 import React from "react";
 
 const Carousol = (data) => {
+  if(data.data.length == 0){
+    return;
+  }
   var ele = [];
   if (data.data[0].url != "") {
     ele[0] = (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import isLoggedin from "../helper.js";
+import {isLoggedIn} from "../helper.js";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
@@ -39,6 +39,7 @@ const Login = () => {
         localStorage.setItem("name", data.user.name);
         localStorage.setItem("email", data.user.email);
         localStorage.setItem("_id", data.user._id);
+        localStorage.setItem("isVendor", data.user.isVendor);
         window.location.href = "/";
       } else {
         toast.error(data.message, {
@@ -54,7 +55,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (isLoggedin()) {
+    if (isLoggedIn()) {
       window.location.href = "/";
     }
   });

@@ -3,7 +3,7 @@ import $ from "jquery";
 import axios from "../axios.js";
 import toast, { Toaster } from "react-hot-toast";
 // import Loader from "./Loader";
-import isLoggedn from "../helper.js"
+import {isLoggedIn} from "../helper.js"
 
 const Signup = () => {
   const [user, setuser] = useState({});
@@ -45,6 +45,7 @@ const Signup = () => {
         localStorage.setItem("name", data.user.name);
         localStorage.setItem("email", data.user.email);
         localStorage.setItem("_id", data.user._id);
+        localStorage.setItem("isVendor", data.user.isVendor);
         window.location.href = "/";
       }else{
         toast.error(data.message, {
@@ -60,7 +61,7 @@ const Signup = () => {
   };
 
   useEffect(()=>{
-    if(isLoggedn()){
+    if(isLoggedIn()){
       window.location.href = "/";
     }
   })
@@ -123,7 +124,7 @@ const Signup = () => {
               onChange={handleInput}
               className="form-control"
             >
-              <option value="false" name="false">
+              <option value="false" name="false" selected>
                 User
               </option>
               <option value="true" name="true">
