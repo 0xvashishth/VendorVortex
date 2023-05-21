@@ -36,7 +36,7 @@ const Community = () => {
                                 return (
                                     <div className="card mt-2" key={index}>
                                         <div className="card-body">
-                                            <h5 className="card-title">{community.name}</h5>
+                                            <h5 className="card-title"><a href={`/community/${community._id}`}>{community.name}</a></h5>
                                             <p className="card-text">{community.description}</p>
                                         </div>
                                     </div>

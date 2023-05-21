@@ -37,7 +37,7 @@ const Shops = () => {
                                 return (
                                     <div className="card mt-2" key={index}>
                                         <div className="card-body">
-                                            <h5 className="card-title">{shop.name}</h5>
+                                            <h5 className="card-title"><a href={`/shop/${shop._id}`}>{shop.name}</a></h5>
                                             <p className="card-text">{shop.description}</p>
                                         </div>
                                     </div>
