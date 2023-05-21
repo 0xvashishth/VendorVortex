@@ -52,10 +52,12 @@ const deleteUser = async (req, res) => {
 
 const getUserById = async (req, res) => {
   const userId = req.params.id;
+  console.log(userId)
   try {
+    console.log("Heyy!")
     User.aggregate([
       {
-        $match: { _id: mongoose.Types.ObjectId(userId) },
+        $match: { _id: new mongoose.Types.ObjectId(userId) },
       },
       {
         $lookup: {
@@ -73,9 +75,9 @@ const getUserById = async (req, res) => {
           as: "shops",
         },
       },
-      {
-        $match: { "communities.0": { $exists: true } },
-      },
+      // {
+      //   $match: { "communities.0": { $exists: true } },
+      // },
       {
         $project: {
           name: 1,
