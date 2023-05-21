@@ -53,7 +53,7 @@ const HomePage = () => {
               aria-label="Slide 3"
             ></button>
           </div>
-          {/* <div class="carousel-inner">
+          <div class="carousel-inner">
             <div class="carousel-item active">
               <img
                 src="https://github.com/j-imy/test_repo/assets/89864614/b48e9bb9-f6f7-4c8e-a41e-d7929d56d666"
@@ -75,7 +75,7 @@ const HomePage = () => {
                 alt="..."
               />
             </div>
-          </div> */}
+          </div>
           <button
             class="carousel-control-prev"
             type="button"
