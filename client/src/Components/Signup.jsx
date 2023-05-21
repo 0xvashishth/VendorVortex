@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import $ from "jquery";
 import axios from "../axios.js";
 import toast, { Toaster } from "react-hot-toast";
-import { useCookies } from "react-cookie";
-import Loader from "./Loader";
+// import Loader from "./Loader";
 import isLoggedn from "../helper.js"
 
 const Signup = () => {
   const [user, setuser] = useState({});
-  const [cookies, setCookie] = useCookies(["user"]);
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -19,6 +17,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const toastId = toast.loading('Preparing Your SpaceShip 🚀');
     const { name, email, password, isVendor } = user;
     try {
       const res = await fetch(
@@ -38,7 +37,9 @@ const Signup = () => {
       );
       const data = await res.json();
       if (res.status == 201) {
-        toast.success(data.message)
+        toast.success(data.message, {
+          id: toastId,
+        });
         console.log(data.user); 
         localStorage.setItem("token", data.jwttokenloginuser);
         localStorage.setItem("name", data.user.name);
@@ -46,11 +47,15 @@ const Signup = () => {
         localStorage.setItem("_id", data.user._id);
         window.location.href = "/";
       }else{
-        toast.error(data.message)
+        toast.error(data.message, {
+          id: toastId,
+        });
       }
     } catch (error) {
-        toast.error(error.message)
-        console.log(error);
+      toast.error(error.message, {
+        id: toastId,
+      });
+      console.log(error);
     }
   };
 
