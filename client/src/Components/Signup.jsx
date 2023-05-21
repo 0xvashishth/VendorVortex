@@ -60,7 +60,7 @@ const Signup = () => {
   };
 
   useEffect(()=>{
-    if(isLoggedn){
+    if(isLoggedn()){
       window.location.href = "/";
     }
   })
