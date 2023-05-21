@@ -42,21 +42,23 @@ const Navbar = () => {
                   Vision
                 </a>
               </li>
+              <Link className="nav-link" to={`/communities`}>
+                Communities
+              </Link>
+              <Link className="nav-link" to={`/shops`}>
+                Shops
+              </Link>
               <li className="nav-item">
                 {!isLoggedIn() ? (
                   <></>
                 ) : (
                   <>
                     <div className="d-flex justify-contenct-center align-items center flex-row">
-                      <Link className="nav-link" to={`/profile/${localStorage.getItem("_id")}`}>
+                      <Link
+                        className="nav-link"
+                        to={`/profile/${localStorage.getItem("_id")}`}
+                      >
                         Profile
-                      </Link>
-
-                      <Link className="nav-link" to={`/communities`}>
-                        Communities
-                      </Link>
-                      <Link className="nav-link" to={`/shops`}>
-                        Shops
                       </Link>
                     </div>
                   </>
@@ -100,7 +102,11 @@ const Navbar = () => {
         <Route exact path="/shops" element={<Shops />}></Route>
         <Route exact path="/logout" element={<Logout />}></Route>
         <Route exact path="/shop/:id" element={<Shop />}></Route>
-        <Route exact path="/community/:id" element={<CommunityDetails />}></Route>
+        <Route
+          exact
+          path="/community/:id"
+          element={<CommunityDetails />}
+        ></Route>
       </Routes>
     </>
   );
