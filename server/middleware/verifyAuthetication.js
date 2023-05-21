@@ -76,7 +76,6 @@ const veifyCommunityAuthenticUser = async (req, res, next) => {
 const verifyIsVendor = async (req, res, next) => {
   try {
     const rootUser  = req.rootUser;
-    console.log(rootUser)
     if (!rootUser.isVendor) {
       return res
         .status(400)

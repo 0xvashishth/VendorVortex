@@ -2,7 +2,7 @@ import React from "react";
 
 const Carousol = (data) => {
   var ele = [];
-  if (data) {
+  if (data.data[0].url != "") {
     ele[0] = (
       <div class="carousel-item active" key="0">
         <img
@@ -14,11 +14,10 @@ const Carousol = (data) => {
     );
   }
   for (var i = 1; i < data.data.length; i++) {
-    console.log(data.data[i]);
     ele[i] = (
-      <div class="carousel-item active" key={i}>
+      <div class="carousel-item" key={i}>
         <img
-          src="https://github-production-user-asset-6210df.s3.amazonaws.com/89864614/239711589-b48e9bb9-f6f7-4c8e-a41e-d7929d56d666.png"
+          src={data.data[i].url}
           class="d-block w-100"
           alt="..."
         />
