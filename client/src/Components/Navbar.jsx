@@ -5,7 +5,9 @@ import Signup from "./Signup";
 import Profile from "./Profile";
 import Logout from "./Logout";
 import HomePage from "./HomePage";
-import {isLoggedIn} from "../helper.js";
+import { isLoggedIn } from "../helper.js";
+import Community from "./Community";
+import Shops from "./Shops";
 import Shop from "./ShopDetails";
 import CommunityDetails from "./CommunityDetails";
 
@@ -45,9 +47,18 @@ const Navbar = () => {
                   <></>
                 ) : (
                   <>
-                    <Link className="nav-link" to={`/profile/${localStorage.getItem("_id")}`}>
-                      Profile
-                    </Link>
+                    <div className="d-flex justify-contenct-center align-items center flex-row">
+                      <Link className="nav-link" to={`/profile/${localStorage.getItem("_id")}`}>
+                        Profile
+                      </Link>
+
+                      <Link className="nav-link" to={`/communities`}>
+                        Communities
+                      </Link>
+                      <Link className="nav-link" to={`/shops`}>
+                        Shops
+                      </Link>
+                    </div>
                   </>
                 )}
               </li>
@@ -85,6 +96,8 @@ const Navbar = () => {
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/signup" element={<Signup />}></Route>
         <Route exact path="/profile/:id" element={<Profile />}></Route>
+        <Route exact path="/communities" element={<Community />}></Route>
+        <Route exact path="/shops" element={<Shops />}></Route>
         <Route exact path="/logout" element={<Logout />}></Route>
         <Route exact path="/shop/:id" element={<Shop />}></Route>
         <Route exact path="/community/:id" element={<CommunityDetails />}></Route>
