@@ -6,7 +6,7 @@ import Profile from "./Profile";
 import Logout from "./Logout";
 import HomePage from "./HomePage";
 import isLoggedn from "../helper.js";
-import Shop from "./Shop";
+import Shop from "./ShopDetails";
 import CommunityDetails from "./CommunityDetails";
 
 const Navbar = () => {
@@ -87,7 +87,7 @@ const Navbar = () => {
         <Route exact path="/profile" element={<Profile />}></Route>
         <Route exact path="/logout" element={<Logout />}></Route>
         <Route exact path="/shop/:id" element={<Shop />}></Route>
-        <Route exact path="/viewCommunity/:id" element={<CommunityDetails />}></Route>
+        <Route exact path="/community/:id" element={<CommunityDetails />}></Route>
       </Routes>
     </>
   );
