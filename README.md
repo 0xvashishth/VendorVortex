@@ -50,7 +50,6 @@ VendorVortex is built using MERN Stack, React for frontend, MongoDB for backend 
   <img src="https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white"/>
   <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/>
   <img src=" https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg" />
 </div>
 
 Join us on this exciting journey as we empower local vendors, foster strong communities, and create a platform where everyone can benefit. Let's make a difference together with VendorVortex!
