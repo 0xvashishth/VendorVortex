@@ -133,7 +133,7 @@ const CommunityDetails = () => {
                 <div className="card-body">
                   <h1 className="card-title">
                     {communityDetails.name}{" "}
-                    <span class="badge text-bg-primary">Community</span>
+                    <span className="badge text-bg-primary">Community</span>
                   </h1>
                   <h4 className="card-text">{communityDetails.description}</h4>
                 </div>
@@ -141,12 +141,12 @@ const CommunityDetails = () => {
             </div>
           </div>
         </div>
-        <div class="row container mt-3 mx-auto">
-          <div class="col-sm-6 p-1">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">{communityDetails.shop.name}</h5>
-                <p class="card-text">
+        <div className="row container mt-3 mx-auto">
+          <div className="col-sm-6 p-1">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{communityDetails.shop.name}</h5>
+                <p className="card-text">
                   {communityDetails.shop.fullAddress},{" "}
                   {communityDetails.shop.city}, {communityDetails.shop.state},{" "}
                   {communityDetails.shop.country}
@@ -155,11 +155,11 @@ const CommunityDetails = () => {
               </div>
             </div>
           </div>
-          <div class="col-sm-6 p-1">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Shop Owner 🤵🏻</h5>
-                <p class="card-text">
+          <div className="col-sm-6 p-1">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Shop Owner 🤵🏻</h5>
+                <p className="card-text">
                   <a href={``}>{communityDetails.owner.name}</a>
                   <br />
                   {communityDetails.owner.email}

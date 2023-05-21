@@ -584,7 +584,7 @@ const Profile = () => {
           <div className="mt-2 container emp-profile">
             <div className="row">
               <div className="col-md-6">
-                <h2>{userData.name} &nbsp; {userData.isVendor ? <span class="badge text-bg-primary">Vendor</span> : <span class="badge text-bg-primary">User</span>}</h2>
+                <h2>{userData.name} &nbsp; {userData.isVendor ? <span className="badge text-bg-primary">Vendor</span> : <span className="badge text-bg-primary">User</span>}</h2>
                 <p>{userData.email}</p>
               </div>
               {isLoggedIn() && isVendor() ?
