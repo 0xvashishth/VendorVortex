@@ -214,7 +214,7 @@ const updateRatings = async (req, res) => {
       })
       .catch((error) => {
         console.error("Error adding shop rating:", error);
-        return res.status(401).json({ message: "Failed to add ratings!", error });
+        return res.status(400).json({ message: "You have already rated this shop! checkout below ✅", error });
       });
   } catch (error) {
     return res.status(500).json({ message: "Server Error!", error });
