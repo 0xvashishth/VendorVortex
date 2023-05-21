@@ -1,55 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Profile = () => {
-    const [community, setCommunity] = useState({
-        vendorEmail: "",
-        vendorDesc: "",
-        vendorShopid: ""
-    });
-    const [shop, setShop] = useState({
-        shopname: "",
-        shopDesc: "",
-        shopAdd: "",
-        shopCity: "",
-        shopState: "",
-        shopCountry: "",
-        shopPinCode: "",
-        shopContact: ""
-    });
+    const [userData, setUserData] = useState({}); // userData = {}
+    const [community, setCommunity] = useState({});
+    const [shop, setShop] = useState({});
+    const [plan, setPlan] = useState({})
 
-    const [plan, setPlan] = useState({
-        planname: "",
-        plandesc: "",
-        planshopid: ""
-    })
+    const getUserData = async () => {
+        try {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}api/user/${localStorage.getItem('_id')}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const resJson = await res.json();
+            console.log("Data in profile : ", resJson);
+            setUserData(resJson.user);
+        }
+        catch (error) {
+            console.log("Some error occured");
+        }
+    }
+    useEffect(() => {
+        getUserData();
+    }, []);
+
     const handleCommunityModal = (e) => {
-        console.log(e.target.value);
         const { name, value } = e.target;
         setCommunity({ ...community, [name]: value });
     }
 
     const handleShopModal = (e) => {
-        console.log(e.target.value);
         const { name, value } = e.target;
         setShop({ ...shop, [name]: value });
     }
 
     const handlePlanModal = (e) => {
-        console.log(e.target.value);
         const { name, value } = e.target;
         setPlan({ ...plan, [name]: value });
     }
 
     const handleCommunitySubmit = async () => {
-        console.log(community);
-        const { vendorEmail, vendorDesc, vendorShopid } = community;
+        const { vendorName, vendorDesc, vendorShopid } = community;
+        console.log("we are sending : ", community);
         const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}api/community`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                vendorEmail, vendorDesc, vendorShopid
+                jwttokenloginuser: localStorage.getItem('token'), name: vendorName, description: vendorDesc, shopId: vendorShopid
             })
         });
         const data = await res.json();
@@ -75,13 +76,14 @@ const Profile = () => {
     const handlePlanSubmit = async () => {
         console.log(plan);
         const { planname, plandesc, planshopid } = plan;
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/plan`, {
+        console.log("We are sending : ", plan);
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}api/plan`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                planname, plandesc, planshopid
+                jwttokenloginuser: localStorage.getItem('token'), name: planname, description: plandesc, shopId: planshopid
             })
         });
         const data = await res.json();
@@ -101,9 +103,9 @@ const Profile = () => {
                             <form>
                                 <fieldset>
                                     <div className="form-group row">
-                                        <label for="staticEmail" className="col-sm-2 col-form-label">Email</label>
+                                        <label for="staticEmail" className="col-sm-2 col-form-label">Name</label>
                                         <div className="col-sm-10">
-                                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="vendorEmail" onChange={handleCommunityModal} placeholder="Enter Email" />
+                                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="vendorName" onChange={handleCommunityModal} />
                                         </div>
                                     </div>
                                     <div className="form-group row mt-2">
@@ -113,9 +115,19 @@ const Profile = () => {
                                         </div>
                                     </div>
                                     <div className="form-group row mt-2">
-                                        <label for="staticEmail" className="col-sm-2 col-form-label">Shop ID</label>
+                                        <label for="staticEmail" className="col-sm-2 col-form-label">Shop Name</label>
                                         <div className="col-sm-10">
-                                            <input type="text" className="form-control" id="staticEmail" onChange={handleCommunityModal} name="vendorShopid" placeholder='Enter ShopId' />
+                                            <select className="form-select" id="exampleSelect1" onChange={handleCommunityModal} name="vendorShopid">
+                                                {userData.shops &&
+                                                    userData.shops.map((shop) => {
+                                                        return (
+                                                            <>
+                                                                <option value={shop._id} name={shop._id}>{shop.name}</option>
+                                                            </>
+                                                        );
+                                                    })
+                                                }
+                                            </select>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -133,7 +145,7 @@ const Profile = () => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="createShopModalLabel">Modal title</h1>
+                            <h1 className="modal-title fs-5" id="createShopModalLabel">Create Shop</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
@@ -198,7 +210,7 @@ const Profile = () => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="createPlanModalLabel">Modal title</h1>
+                            <h1 className="modal-title fs-5" id="createPlanModalLabel">Create Plan</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
@@ -217,9 +229,19 @@ const Profile = () => {
                                         </div>
                                     </div>
                                     <div className="form-group row mt-2">
-                                        <label for="staticEmail" className="col-sm-2 col-form-label">shopId</label>
+                                        <label for="staticEmail" className="col-sm-2 col-form-label">Shop Name</label>
                                         <div className="col-sm-10">
-                                            <input type="text" className="form-control" id="staticEmail" onChange={handlePlanModal} name="planshopid" placeholder='Enter shopId' />
+                                            <select className="form-select" id="exampleSelect1" onChange={handlePlanModal} name="planshopid">
+                                                {userData.shops &&
+                                                    userData.shops.map((shop) => {
+                                                        return (
+                                                            <>
+                                                                <option value={shop._id} name={shop._id}>{shop.name}</option>
+                                                            </>
+                                                        );
+                                                    })
+                                                }
+                                            </select>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -232,21 +254,22 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="mt-2 container emp-profile">
-                <div className="row">
-                    <div className="col-md-6">
-                        <h2>Manav Joshi</h2>
-                        <p>manavjoshi154@gmail.com</p>
-                        <p>9157441707</p>
-                    </div>
-                    <div className="col-md-6">
-                        <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#createCommunityModal">Create Community</button>
-                        <button type="button" className="btn btn-info mx-2" data-bs-toggle="modal" data-bs-target="#createShopModal">Create Shop</button>
-                        <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#createPlanModal">Create Plan</button>
+            {
+                userData &&
+                <div className="mt-2 container emp-profile">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <h2>{userData.name}</h2>
+                            <p>{userData.email}</p>
+                        </div>
+                        <div className="col-md-6">
+                            <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#createCommunityModal">Create Community</button>
+                            <button type="button" className="btn btn-info mx-2" data-bs-toggle="modal" data-bs-target="#createShopModal">Create Shop</button>
+                            <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#createPlanModal">Create Plan</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </>
     );
 };

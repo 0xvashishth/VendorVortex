@@ -7,7 +7,7 @@ let mongoose = require("mongoose");
 const veifyShopAuthenticUser = async (req, res, next) => {
   try {
     const { shopId } = req.body;
-
+    console.log("Shop id in veryfy : ", shopId);
     var shopObj = await Shop.findOne({
       _id: mongoose.Types.ObjectId(shopId),
       owner: req.userId,
@@ -75,7 +75,7 @@ const veifyCommunityAuthenticUser = async (req, res, next) => {
 
 const verifyIsVendor = async (req, res, next) => {
   try {
-    const rootUser  = req.rootUser;
+    const rootUser = req.rootUser;
     if (!rootUser.isVendor) {
       return res
         .status(400)
@@ -91,8 +91,8 @@ const verifyIsVendor = async (req, res, next) => {
 }
 
 module.exports = {
-    veifyPlanAuthenticUser,
-    veifyShopAuthenticUser,
-    veifyCommunityAuthenticUser,
-    verifyIsVendor
+  veifyPlanAuthenticUser,
+  veifyShopAuthenticUser,
+  veifyCommunityAuthenticUser,
+  verifyIsVendor
 }
