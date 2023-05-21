@@ -103,23 +103,23 @@ const Shop = () => {
           <Carousol data={shopData.shop.images} />
         </div>
 
-        <div class="row">
-          <div class="col-sm-6 p-1">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Address 🌍</h5>
-                <p class="card-text">
+        <div className="row">
+          <div className="col-sm-6 p-1">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Address 🌍</h5>
+                <p className="card-text">
                 {shopData.shop.fullAddress}, {shopData.shop.city}, {shopData.shop.state}, {shopData.shop.country} 
                 <br/>({shopData.shop.pincode})
                 </p>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 p-1">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Shop Owner 🤵🏻</h5>
-                <p class="card-text">
+          <div className="col-sm-6 p-1">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Shop Owner 🤵🏻</h5>
+                <p className="card-text">
                   <a href={profileurl}>{shopData.shop.ownerDetails[0].name}</a>
                   <br/>
                   {shopData.shop.ownerDetails[0].email}

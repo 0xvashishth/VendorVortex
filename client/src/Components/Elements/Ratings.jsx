@@ -8,12 +8,12 @@ const Rating = ({ ratings }) => {
       </div>
       {ratings.map((rating, index) => {
         return (
-          <div class="toast col-6 show m-1" key={index} role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="me-auto">{rating.rating} ⭐</strong>
+          <div className="toast col-6 show m-1" key={index} role="alert" aria-live="assertive" aria-atomic="true">
+          <div className="toast-header">
+            <strong className="me-auto">{rating.rating} ⭐</strong>
             By &nbsp;<a href={`/profile/rating.user`} className="col-3 text-truncate">{rating.user}</a> 👨🏻‍🚀
           </div>
-          <div class="toast-body">
+          <div className="toast-body">
             
             {rating.comment}
           </div>

@@ -28,15 +28,15 @@ const HomePage = () => {
       <div id="vision">
         <div
           id="carouselExampleCaptions"
-          class="carousel slide "
+          className="carousel slide "
           data-bs-ride="false"
         >
-          <div class="carousel-indicators">
+          <div className="carousel-indicators">
             <button
               type="button"
               data-bs-target="#carouselExampleCaptions"
               data-bs-slide-to="0"
-              class="active"
+              className="active"
               aria-current="true"
               aria-label="Slide 1"
             ></button>
@@ -53,109 +53,109 @@ const HomePage = () => {
               aria-label="Slide 3"
             ></button>
           </div>
-          {/* <div class="carousel-inner">
-            <div class="carousel-item active">
+          <div className="carousel-inner">
+            <div className="carousel-item active">
               <img
                 src="https://github.com/j-imy/test_repo/assets/89864614/b48e9bb9-f6f7-4c8e-a41e-d7929d56d666"
-                class="d-block w-100"
+                className="d-block w-100"
                 alt="..."
               />
             </div>
-            <div class="carousel-item">
+            <div className="carousel-item">
               <img
                 src="https://github.com/j-imy/test_repo/assets/89864614/02f3317a-4b58-4d00-a93e-cd4a67a12536"
-                class="d-block w-100"
+                className="d-block w-100"
                 alt="..."
               />
             </div>
-            <div class="carousel-item">
+            <div className="carousel-item">
               <img
                 src="https://github.com/j-imy/test_repo/assets/89864614/5f5c3984-9ce9-49d5-828c-243bcefaf128"
-                class="d-block w-100"
+                className="d-block w-100"
                 alt="..."
               />
             </div>
-          </div> */}
+          </div>
           <button
-            class="carousel-control-prev"
+            className="carousel-control-prev"
             type="button"
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev"
           >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
           </button>
           <button
-            class="carousel-control-next"
+            className="carousel-control-next"
             type="button"
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="next"
           >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
           </button>
         </div>
       </div>
 
-      <div class="row mx-auto container position-relative py-2 px-4 mt-5">
+      <div className="row mx-auto container position-relative py-2 px-4 mt-5">
         <div className="mx-auto mb-3">
           <h1 className="text-center" id="services">
             💥 Our Services 💥
           </h1>
         </div>
-        <div class="col-sm-6 mb-3 mb-sm-0">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Shop Registration 🏃🏻‍♀️</h5>
-              <p class="card-text text-muted">
+        <div className="col-sm-6 mb-3 mb-sm-0">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Shop Registration 🏃🏻‍♀️</h5>
+              <p className="card-text text-muted">
                 Vendors can register on the platform and can register their
                 shops to showcase their offers and plans 🌿.
               </p>
-              <a href="#" class="btn btn-outline-secondary">
+              <a href="#" className="btn btn-outline-secondary">
                 know more
               </a>
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Shop Plans ☘</h5>
-              <p class="card-text text-muted">
+        <div className="col-sm-6">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Shop Plans ☘</h5>
+              <p className="card-text text-muted">
                 Vendors can provide plans for their regular customers and
                 provide them plans on their purchase levels 💭.
               </p>
-              <a href="#" class="btn btn-outline-secondary">
+              <a href="#" className="btn btn-outline-secondary">
                 know more
               </a>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 mt-3 mb-sm-0 h-100">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Build Community 👫</h5>
-              <p class="card-text text-muted">
+        <div className="col-sm-6 mt-3 mb-sm-0 h-100">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Build Community 👫</h5>
+              <p className="card-text text-muted">
                 Vendors can create community and customers can take benefits of
                 different shop plans and they can stay updated of the vendors
                 plans 👫.
               </p>
-              <a href="#" class="btn btn-outline-secondary">
+              <a href="#" className="btn btn-outline-secondary">
                 know more
               </a>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 mt-3 mb-sm-0 h-100">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Customers 🛃</h5>
-              <p class="card-text text-muted">
+        <div className="col-sm-6 mt-3 mb-sm-0 h-100">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Customers 🛃</h5>
+              <p className="card-text text-muted">
                 Customers can access all the shops around him/her and take
                 advantages by knowing the current plans and benefits of the
                 community 💵.
               </p>
-              <a href="#" class="btn btn-outline-secondary">
+              <a href="#" className="btn btn-outline-secondary">
                 know more
               </a>
             </div>
