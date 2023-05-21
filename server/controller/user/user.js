@@ -85,12 +85,14 @@ const getUserById = async (req, res) => {
           communities: {
             name: 1,
             description: 1,
+            _id: 1,
             memberCount: { $size: "$communities.members" },
           },
           shops: {
             name: 1,
             description: 1,
             city: 1,
+            _id: 1,
             country: 1,
             isVerified: 1,
             images: 1,
