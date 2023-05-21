@@ -162,6 +162,7 @@ const getShopById = async (req, res) => {
           communities: {
             name: 1,
             description: 1,
+            _id:1,
           },
           ownerDetails: {
             name: 1,

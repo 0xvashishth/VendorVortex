@@ -4,6 +4,10 @@ import axios from "../axios";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import isLoggedin from "../helper.js";
+import { useParams } from "react-router-dom";
+import Community from "./Elements/Community"
+import Plan from "./Elements/Plans"
+import Rating from "./Elements/Ratings";
 
 const Shop = () => {
   const [shopData, setshop] = useState({
@@ -19,9 +23,13 @@ const Shop = () => {
         {
           name: ""
         }
-      ]
+      ],
+      communities: [],
+      plans: [],
+      ratings: [],
     },
   });
+  const { id } = useParams();
   const [profileurl, setprofileurl] = useState("");
   const [comment, setcomment] = useState("");
   const [reviewCount, setreviewCount] = useState("");
@@ -63,11 +71,10 @@ const Shop = () => {
   }
 
   useEffect(() => {
-    console.log("geegeg");
     const toastId = toast.loading("Preparing Shop Details.. 🚀");
     function getShop() {
       axios
-        .get("/api/shop/64699f538d5a8f992a85d406")
+        .get(`/api/shop/${id}`)
         .then((data) => {
           console.log(data.data);
           toast.success(data.data.message, {
@@ -77,9 +84,11 @@ const Shop = () => {
           setprofileurl(`/profile/${data.data.shop.owner}`)
         })
         .catch((error) => {
-          toast.success(error.message, {
+          toast.error(error.response.data.message, {
             id: toastId,
           });
+          console.log(error);
+          window.location.href = "/"
         });
     }
     getShop();
@@ -98,7 +107,7 @@ const Shop = () => {
           <div class="col-sm-6 p-1">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Address</h5>
+                <h5 class="card-title">Address 🌍</h5>
                 <p class="card-text">
                 {shopData.shop.fullAddress}, {shopData.shop.city}, {shopData.shop.state}, {shopData.shop.country} 
                 <br/>({shopData.shop.pincode})
@@ -109,7 +118,7 @@ const Shop = () => {
           <div class="col-sm-6 p-1">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Shop Owner</h5>
+                <h5 class="card-title">Shop Owner 🤵🏻</h5>
                 <p class="card-text">
                   <a href={profileurl}>{shopData.shop.ownerDetails[0].name}</a>
                   <br/>
@@ -122,7 +131,7 @@ const Shop = () => {
 
         <div className="row mt-4 container">
           <div>
-            <h3>Provide Feedback Reveiew!</h3>
+            <h3>Provide Feedback Reveiew 🖋</h3>
           </div>
             <div className="col-md-7">
             <input className="form-control" type="text" name="comment" placeholder="Type a comment for this shop.." onChange={(e)=> setcomment(e.target.value)}/>
@@ -140,6 +149,18 @@ const Shop = () => {
            <div className="mx-auto text-center mt-2">
             <button className="p-1 mx-auto btn btn-outline-secondary" onClick={postreview}>Submit Review</button>
            </div>
+        </div>
+
+        <div className="mt-4">
+        <Community communities={shopData.shop.communities}/>
+        </div>
+
+        <div className="mt-4">
+        <Plan plans={shopData.shop.plans}/>
+        </div>
+
+        <div>
+          <Rating ratings={shopData.shop.ratings} />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Community from './Community';
+import Shop from "./Elements/Shops"
 
 const Profile = () => {
     const [userData, setUserData] = useState({});
@@ -274,6 +275,7 @@ const Profile = () => {
                         </div>
                     </div>
                     <Community communities={userData.communities} getUserData={getUserData} />
+                    <Shop shops={userData.shops} />
                 </>
             }
         </>
