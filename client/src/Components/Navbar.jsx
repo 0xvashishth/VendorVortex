@@ -7,15 +7,16 @@ import Logout from "./Logout";
 import HomePage from "./HomePage";
 import isLoggedn from "../helper.js";
 import Shop from "./Shop";
+import CommunityDetails from "./CommunityDetails";
 
 const Navbar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-md m-1 rounded navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             🎉 VendorVortex
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -86,6 +87,7 @@ const Navbar = () => {
         <Route exact path="/profile" element={<Profile />}></Route>
         <Route exact path="/logout" element={<Logout />}></Route>
         <Route exact path="/shop/:id" element={<Shop />}></Route>
+        <Route exact path="/viewCommunity/:id" element={<CommunityDetails />}></Route>
       </Routes>
     </>
   );
