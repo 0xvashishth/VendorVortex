@@ -3,7 +3,7 @@ import $ from "jquery";
 import axios from "../axios.js";
 import toast, { Toaster } from "react-hot-toast";
 // import Loader from "./Loader";
-import {isLoggedIn} from "../helper.js"
+import { isLoggedIn } from "../helper.js"
 
 const Signup = () => {
   const [user, setuser] = useState({});
@@ -40,14 +40,14 @@ const Signup = () => {
         toast.success(data.message, {
           id: toastId,
         });
-        console.log(data.user); 
+        console.log(data.user);
         localStorage.setItem("token", data.jwttokenloginuser);
         localStorage.setItem("name", data.user.name);
         localStorage.setItem("email", data.user.email);
         localStorage.setItem("_id", data.user._id);
         localStorage.setItem("isVendor", data.user.isVendor);
         window.location.href = "/";
-      }else{
+      } else {
         toast.error(data.message, {
           id: toastId,
         });
@@ -60,14 +60,15 @@ const Signup = () => {
     }
   };
 
-  useEffect(()=>{
-    if(isLoggedIn()){
+  useEffect(() => {
+    if (isLoggedIn()) {
       window.location.href = "/";
     }
   })
+
   return (
     <div className="container row m-4">
-    <Toaster toastOptions={{ style: { fontSize: "14px" } }} />
+      <Toaster toastOptions={{ style: { fontSize: "14px" } }} />
       <div className="col-md-5">
         <img
           className="rounded mx-auto d-block img-fluid"
@@ -123,14 +124,13 @@ const Signup = () => {
               name="isVendor"
               onChange={handleInput}
               className="form-control"
+              defaultValue=""
             >
-              <option value="false" name="false" selected>
-                User
-              </option>
-              <option value="true" name="true">
-                Vendor
-              </option>
+              <option style={{ color: "black" }} value="">Select Option</option>
+              <option style={{ color: "black" }} value="false">User</option>
+              <option style={{ color: "black" }} value="true">Vendor</option>
             </select>
+
           </div>
           <button
             type="submit"
