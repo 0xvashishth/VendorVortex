@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, NavLink as Link } from "react-router-dom";
-import {isLoggedIn} from "../helper.js";
+import { isLoggedIn } from "../helper.js";
 
 const HomePage = () => {
   return (
@@ -18,7 +18,7 @@ const HomePage = () => {
               </Link>
             ) : (
               <Link className="btn btn-outline-secondary me-2" to={`/profile/${localStorage.getItem("_id")}`}>
-                Got To Your Profile
+                Go To Your Profile
               </Link>
             )}
           </div>

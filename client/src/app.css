@@ -103,10 +103,10 @@ body {
     background-size: cover;
     /* background: rgb(2,0,36); */
     /* background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%,rgba(0,212,255,1) 100%); */
-  
+
     /*   filter: blur(8px); */
     /*   -webkit-filter: blur(8px); */
-  }
+}
 
 body {
     margin: 0;
@@ -2320,6 +2320,10 @@ progress {
     margin-top: 0.25rem;
     font-size: 0.875em;
     color: rgba(255, 255, 255, 0.7);
+}
+
+.form-select:not([multiple]) option {
+    color: #000;
 }
 
 .form-control {
@@ -12761,7 +12765,7 @@ body {
 }
 
 .form-select:not([multiple]) option {
-    color: #000;
+    color: black;
 }
 
 .bg-light .form-control {
