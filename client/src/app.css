@@ -95,6 +95,20 @@
 }
 
 body {
+    background: url('../public/assets/gradient-3.png') no-repeat center center fixed !important;
+    /* background:url('../public/assets/giphy.gif') no-repeat center center fixed; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* background: rgb(2,0,36); */
+    /* background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%,rgba(0,212,255,1) 100%); */
+  
+    /*   filter: blur(8px); */
+    /*   -webkit-filter: blur(8px); */
+  }
+
+body {
     margin: 0;
     font-family: var(--bs-body-font-family);
     font-size: var(--bs-body-font-size);
